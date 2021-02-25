@@ -4,6 +4,9 @@ author: "Paddy"
 date: "24/02/2021"
 output: html_document
 ---
+## Summary
+We are looking for occurrences....
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -15,13 +18,14 @@ library(Biostrings)
 ```
 
 ```{r setwd_for_interactive_sessions_PHmac, include=FALSE,eval=FALSE}
-setwd("~/Documents/SENIOR HONOURS/Honours Project 20:21/Motif analysis/FASTA sequences/All genes")
+setwd("~/Documents/SENIOR HONOURS/Honours Project 20:21/Motif analysis/Scerevisiae_RBP_motifs_Calbicans/src/")
 here::here() 
 ```
-
+## Load CDS and approximate 5' and 3' UTRs
+#### 5' UTRs
 ```{r load_upstream1000}
 # define fasta filename
-Ca_up1000_file <- paste(here::here(), "Calbicans_SC5314_ATG_upstream_1000nt.fasta",
+Ca_up1000_file <- paste(here::here(), "Data", "Calbicans_SC5314_ATG_upstream_1000nt.fasta",
                         sep= "/")
 # load fasta file as DNA string set
 Ca_up1000_DSS <- readDNAStringSet(Ca_up1000_file)
@@ -36,10 +40,26 @@ names(Ca_up1000_DSS) <- Ca_names_up_info$id
 # print the DNA string set to check it came out ok
 Ca_up1000_DSS
 ```
+#### CDS
+```{r load_CDS}
+# define fasta filename
+Ca_CDS_file <- paste(here::here(), "Data", "Calbicans_SC5314_CDS.fasta",
+                        sep= "/")
+# load fasta file as DNA string set
+Ca_CDS_DSS <- readDNAStringSet(Ca_CDS_file)
 
+Ca_names_CDS_info <- 
+  tibble(everything = names(Ca_CDS_DSS)) %>% 
+  tidyr::separate(everything,into = c("id","strain","info","seqtype","seq","length"), sep = " \\| ") %>%
+  dplyr::select(id, info,seq)
+names(Ca_CDS_DSS) <- Ca_names_CDS_info$id
+# print the DNA string set to check it came out ok
+Ca_CDS_DSS
+```
+#### 3' UTRs
 ```{r load_downstream1000}
 # define fasta filename
-Ca_down1000_file <- paste(here::here(), "Calbicans_SC5314_stopcodon_downstream_1000nt.fasta",
+Ca_down1000_file <- paste(here::here(), "Data", "Calbicans_SC5314_stopcodon_downstream_1000nt.fasta",
                         sep= "/")
 # load fasta file as DNA string set
 Ca_down1000_DSS <- readDNAStringSet(Ca_down1000_file)
@@ -55,44 +75,61 @@ names(Ca_down1000_DSS) <- Ca_names_down_info$id
 Ca_down1000_DSS
 ```
 
-
-```{r CNYTCNYT_count_up}
-CNYTCNYT_count_up_df <- tibble(id = Ca_names_up_info$id,
+## Count occurences in 1000nt 5'UTRs
+```{r motif_count_up}
+motif_count_up_df <- tibble(id = Ca_names_up_info$id,
                             info = Ca_names_up_info$info,
-                            count_up1000 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_up1000 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = Ca_up1000_DSS,
                                  fixed = "subject"),
-                            count_up200 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_up200 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = subseq(Ca_up1000_DSS,start = 801L, end = 1000L),
                                  fixed = "subject"),
-                            count_up100 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_up100 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = subseq(Ca_up1000_DSS,start = 901L, end = 1000L),
                                  fixed = "subject")
 )
-summary(CNYTCNYT_count_up_df)
+summary(motif_count_up_df)
 ```
 ```{r high_counts_up, results="asis"}
-arrange(CNYTCNYT_count_up_df,desc(count_up100)) %>%
+arrange(motif_count_up_df,desc(count_up100)) %>%
     head(n = 20) %>%
     knitr::kable()
 ```
-```{r CNYTCNYT_count_down}
-CNYTCNYT_count_down_df <- tibble(id = Ca_names_down_info$id,
+
+## Count occurences in CDS
+```{r motif_count_CDS}
+motif_count_CDS_df <- tibble(id = Ca_names_CDS_info$id,
+                            info = Ca_names_CDS_info$info,
+                            count_CDS = vcountPattern(pattern = DNAString("TACTAAC"),
+                                 subject = Ca_CDS_DSS,
+                                 fixed = "subject"))
+summary(motif_count_CDS_df)
+```
+```{r high_counts_CDS, results="asis"}
+arrange(motif_count_CDS_df,desc(count_CDS)) %>%
+    head(n = 20) %>%
+    knitr::kable()
+```
+
+## Count occurences in 1000nt 3'UTRs
+```{r motif_count_down}
+motif_count_down_df <- tibble(id = Ca_names_down_info$id,
                             info = Ca_names_down_info$info,
-                            count_down1000 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_down1000 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = Ca_down1000_DSS,
                                  fixed = "subject"),
-                            count_down200 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_down200 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = subseq(Ca_down1000_DSS,start = 1L, end = 200L),
                                  fixed = "subject"),
-                            count_down100 = vcountPattern(pattern = DNAString("CTTGTAG"),
+                            count_down100 = vcountPattern(pattern = DNAString("TACTAAC"),
                                  subject = subseq(Ca_down1000_DSS,start = 1L, end = 100L),
                                  fixed = "subject")
 )
-summary(CNYTCNYT_count_down_df)
+summary(motif_count_down_df)
 ```
 ```{r high_counts_down, results="asis"}
-arrange(CNYTCNYT_count_down_df,desc(count_down100)) %>%
+arrange(motif_count_down_df,desc(count_down100)) %>%
     head(n = 20) %>%
     knitr::kable()
 ```
