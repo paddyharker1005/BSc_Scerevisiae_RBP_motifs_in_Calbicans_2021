@@ -1,11 +1,11 @@
 ---
-title: "Scerevisiae RBP broad motif search in Calbicans"
+title: "Scerevisiae Ssd1 broad motif search in Calbicans"
 author: "Paddy"
-date: "24/02/2021"
+date: "28/02/2021"
 output: html_document
 ---
 ## Summary
-We are looking for occurrences....
+We are looking for occurrences of the S. cerevisiae Ssd1 motif in the CDS and UTRs of C. albicans genes to form hypotheses about homologous post-transcriptional regulation.
 
 
 ```{r setup, include=FALSE}
@@ -79,13 +79,13 @@ Ca_down1000_DSS
 ```{r motif_count_up}
 motif_count_up_df <- tibble(id = Ca_names_up_info$id,
                             info = Ca_names_up_info$info,
-                            count_up1000 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_up1000 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = Ca_up1000_DSS,
                                  fixed = "subject"),
-                            count_up200 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_up200 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = subseq(Ca_up1000_DSS,start = 801L, end = 1000L),
                                  fixed = "subject"),
-                            count_up100 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_up100 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = subseq(Ca_up1000_DSS,start = 901L, end = 1000L),
                                  fixed = "subject")
 )
@@ -101,7 +101,7 @@ arrange(motif_count_up_df,desc(count_up100)) %>%
 ```{r motif_count_CDS}
 motif_count_CDS_df <- tibble(id = Ca_names_CDS_info$id,
                             info = Ca_names_CDS_info$info,
-                            count_CDS = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_CDS = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = Ca_CDS_DSS,
                                  fixed = "subject"))
 summary(motif_count_CDS_df)
@@ -116,13 +116,13 @@ arrange(motif_count_CDS_df,desc(count_CDS)) %>%
 ```{r motif_count_down}
 motif_count_down_df <- tibble(id = Ca_names_down_info$id,
                             info = Ca_names_down_info$info,
-                            count_down1000 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_down1000 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = Ca_down1000_DSS,
                                  fixed = "subject"),
-                            count_down200 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_down200 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = subseq(Ca_down1000_DSS,start = 1L, end = 200L),
                                  fixed = "subject"),
-                            count_down100 = vcountPattern(pattern = DNAString("CHUGUAWAUAWAWA"),
+                            count_down100 = vcountPattern(pattern = DNAString("AKTCATTCCTT"),
                                  subject = subseq(Ca_down1000_DSS,start = 1L, end = 100L),
                                  fixed = "subject")
 )
@@ -137,27 +137,27 @@ arrange(motif_count_down_df,desc(count_down100)) %>%
 ## List of genes for GO search
 
 ```{r gene_list_output_up}
-id_file_GCNGGN1_up100 <- paste(here::here(), "results", "Ca_id_list_CHUGUAWAUAWAWA1_up100.txt", sep = "/")
+id_file_AKTCATTCCTT1_up100 <- paste(here::here(), "results", "Ca_id_list_AKTCATTCCTT1_up100.txt", sep = "/")
 motif_count_up_df %>%
     filter(count_up100 >= 1) %>%
     pull(id) %>%
-    write_lines(file = id_file_GCNGGN1_up100)
-id_file_GCNGGN2_up100 <- paste(here::here(), "results", "Ca_id_list_CHUGUAWAUAWAWA2_up100.txt", sep = "/")
+    write_lines(file = id_file_AKTCATTCCTT1_up100)
+id_file_AKTCATTCCTT2_up100 <- paste(here::here(), "results", "Ca_id_list_AKTCATTCCTT2_up100.txt", sep = "/")
 motif_count_up_df %>%
     filter(count_up100 >= 2) %>%
     pull(id) %>%
-    write_lines(file = id_file_GCNGGN2_up100)
+    write_lines(file = id_file_AKTCATTCCTT2_up100)
 ```
 
 ```{r gene_list_output_down}
-id_file_GCNGGN1_down100 <- paste(here::here(), "results", "Ca_id_list_CHUGUAWAUAWAWA1_down100.txt", sep = "/")
+id_file_AKTCATTCCTT1_down100 <- paste(here::here(), "results", "Ca_id_list_AKTCATTCCTT1_down100.txt", sep = "/")
 motif_count_down_df %>%
     filter(count_down100 >= 1) %>%
     pull(id) %>%
-    write_lines(file = id_file_GCNGGN1_down100)
-id_file_GCNGGN2_down100 <- paste(here::here(), "results", "Ca_id_list_CHUGUAWAUAWAWA2_down100.txt", sep = "/")
+    write_lines(file = id_file_AKTCATTCCTT1_down100)
+id_file_AKTCATTCCTT2_down100 <- paste(here::here(), "results", "Ca_id_list_AKTCATTCCTT2_down100.txt", sep = "/")
 motif_count_down_df %>%
     filter(count_down100 >= 2) %>%
     pull(id) %>%
-    write_lines(file = id_file_GCNGGN2_down100)
+    write_lines(file = id_file_AKTCATTCCTT2_down100)
 ```
