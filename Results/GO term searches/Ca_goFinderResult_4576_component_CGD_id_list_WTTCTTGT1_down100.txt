@@ -1,0 +1,2 @@
+GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
+5740	mitochondrial envelope	"16 out of 134 genes, 11.9%"	"291 out of 6473 background genes, 4.5%"	0.04377	2.00%	C1_08470W_A:PET100:ATP18:COX17:C2_05480C_A:CYT2:C4_03750C_A:PUF3:CYC3:C5_01490C_A:MSS2:COX15:COQ3:C7_02480W_A:TIM54:SCO1	5737:5753:32473:5829:276:5758:5739:16021:5759:5886:5743:9277:31305:19898:31314:42721:32592
