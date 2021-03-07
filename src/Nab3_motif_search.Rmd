@@ -148,7 +148,18 @@ motif_count_up_df %>%
     pull(id) %>%
     write_lines(file = id_file_WTTCTTGT2_up100)
 ```
-
+```{r gene_list_output_CDS}
+id_file_WTTCTTGT1_CDS <- paste(here::here(), "results", "Ca_id_list_WTTCTTGT1_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 1) %>% 
+  pull(id) %>% 
+  write_lines(file = id_file_WTTCTTGT1_CDS)
+id_file_WTTCTTGT2_CDS <- paste(here::here(), "results", "Ca_id_list_WTTCTTGT2_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 2) %>% 
+  pull(id) %>%
+  write_lines(file = id_file_WTTCTTGT2_CDS)
+```
 ```{r gene_list_output_down}
 id_file_WTTCTTGT1_down100 <- paste(here::here(), "results", "Ca_id_list_WTTCTTGT1_down100.txt", sep = "/")
 motif_count_down_df %>%
