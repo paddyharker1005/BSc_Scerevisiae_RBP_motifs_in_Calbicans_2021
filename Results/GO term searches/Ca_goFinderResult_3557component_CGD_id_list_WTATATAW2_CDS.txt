@@ -1,0 +1,2 @@
+GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
+44232	organelle membrane contact site	"8 out of 302 genes, 2.6%"	"37 out of 6473 background genes, 0.6%"	0.05888	0.00%	C1_02200C_A:AGC1:C2_02440W_A:C2_02490C_A:MDM10:ATG1:VPS13:VPS15	5628:120095:5829:71561:1990316:30897:407:324:31966:1990816:16021:329:5886:34274:19898:16020:32865:34271:34272:44232:421:5776:1401:61908
