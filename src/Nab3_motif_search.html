@@ -794,36 +794,36 @@ summary(motif_count_down_df)</code></pre>
 </div>
 <div id="list-of-genes-for-go-search" class="section level2">
 <h2>List of genes for GO search</h2>
-<pre class="r"><code>id_file_WTTCTTGT1_up100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT1_up100.txt&quot;, sep = &quot;/&quot;)
+<pre class="r"><code>id_file_WTTCTTGT1_up100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT1_up100.txt&quot;, sep = &quot;/&quot;)
 motif_count_up_df %&gt;%
     filter(count_up100 &gt;= 1) %&gt;%
     pull(id) %&gt;%
     write_lines(file = id_file_WTTCTTGT1_up100)
-id_file_WTTCTTGT2_up100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT2_up100.txt&quot;, sep = &quot;/&quot;)
+id_file_WTTCTTGT2_up100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT2_up100.txt&quot;, sep = &quot;/&quot;)
 motif_count_up_df %&gt;%
     filter(count_up100 &gt;= 2) %&gt;%
     pull(id) %&gt;%
     write_lines(file = id_file_WTTCTTGT2_up100)</code></pre>
-<pre class="r"><code>id_file_WTTCTTGT1_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT1_CDS.txt&quot;, sep = &quot;/&quot;)
+<pre class="r"><code>id_file_WTTCTTGT1_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT1_CDS.txt&quot;, sep = &quot;/&quot;)
 motif_count_CDS_df %&gt;% 
   filter(count_CDS &gt;= 1) %&gt;% 
   pull(id) %&gt;% 
   write_lines(file = id_file_WTTCTTGT1_CDS)
-id_file_WTTCTTGT2_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT2_CDS.txt&quot;, sep = &quot;/&quot;)
+id_file_WTTCTTGT2_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT2_CDS.txt&quot;, sep = &quot;/&quot;)
 motif_count_CDS_df %&gt;% 
   filter(count_CDS &gt;= 2) %&gt;% 
   pull(id) %&gt;%
   write_lines(file = id_file_WTTCTTGT2_CDS)</code></pre>
-<pre class="r"><code>id_file_WTTCTTGT1_down100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT1_down100.txt&quot;, sep = &quot;/&quot;)
+<pre class="r"><code>id_file_WTTCTTGT1_down200 &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT1_down200.txt&quot;, sep = &quot;/&quot;)
 motif_count_down_df %&gt;%
-    filter(count_down100 &gt;= 1) %&gt;%
+    filter(count_down200 &gt;= 1) %&gt;%
     pull(id) %&gt;%
-    write_lines(file = id_file_WTTCTTGT1_down100)
-id_file_WTTCTTGT2_down100 &lt;- paste(here::here(), &quot;results&quot;, &quot;Ca_id_list_WTTCTTGT2_down100.txt&quot;, sep = &quot;/&quot;)
+    write_lines(file = id_file_WTTCTTGT1_down200)
+id_file_WTTCTTGT2_down200 &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Nab3&quot;, &quot;Ca_id_list_WTTCTTGT2_down200.txt&quot;, sep = &quot;/&quot;)
 motif_count_down_df %&gt;%
-    filter(count_down100 &gt;= 2) %&gt;%
+    filter(count_down200 &gt;= 2) %&gt;%
     pull(id) %&gt;%
-    write_lines(file = id_file_WTTCTTGT2_down100)</code></pre>
+    write_lines(file = id_file_WTTCTTGT2_down200)</code></pre>
 </div>
 
 

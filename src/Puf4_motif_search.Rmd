@@ -137,27 +137,38 @@ arrange(motif_count_down_df,desc(count_down100)) %>%
 ## List of genes for GO search
 
 ```{r gene_list_output_up}
-id_file_TGTAHMNTA1_up100 <- paste(here::here(), "results", "Ca_id_list_TGTAHMNTA1_up100.txt", sep = "/")
+id_file_TGTAHMNTA1_up100 <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA1_up100.txt", sep = "/")
 motif_count_up_df %>%
     filter(count_up100 >= 1) %>%
     pull(id) %>%
     write_lines(file = id_file_TGTAHMNTA1_up100)
-id_file_TGTAHMNTA2_up100 <- paste(here::here(), "results", "Ca_id_list_TGTAHMNTA2_up100.txt", sep = "/")
+id_file_TGTAHMNTA2_up100 <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA2_up100.txt", sep = "/")
 motif_count_up_df %>%
     filter(count_up100 >= 2) %>%
     pull(id) %>%
     write_lines(file = id_file_TGTAHMNTA2_up100)
 ```
-
+```{r gene_list_output_CDS}
+id_file_TGTAHMNTA1_CDS <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA1_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 1) %>% 
+  pull(id) %>% 
+  write_lines(file = id_file_TGTAHMNTA1_CDS)
+id_file_TGTAHMNTA2_CDS <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA2_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 2) %>% 
+  pull(id) %>%
+  write_lines(file = id_file_TGTAHMNTA2_CDS)
+```
 ```{r gene_list_output_down}
-id_file_TGTAHMNTA1_down100 <- paste(here::here(), "results", "Ca_id_list_TGTAHMNTA1_down100.txt", sep = "/")
+id_file_TGTAHMNTA1_down200 <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA1_down200.txt", sep = "/")
 motif_count_down_df %>%
-    filter(count_down100 >= 1) %>%
+    filter(count_down200 >= 1) %>%
     pull(id) %>%
-    write_lines(file = id_file_TGTAHMNTA1_down100)
-id_file_TGTAHMNTA2_down100 <- paste(here::here(), "results", "Ca_id_list_TGTAHMNTA2_down100.txt", sep = "/")
+    write_lines(file = id_file_TGTAHMNTA1_down200)
+id_file_TGTAHMNTA2_down200 <- paste(here::here(), "results", "Motif Searches", "Puf4", "Ca_id_list_TGTAHMNTA2_down200.txt", sep = "/")
 motif_count_down_df %>%
-    filter(count_down100 >= 2) %>%
+    filter(count_down200 >= 2) %>%
     pull(id) %>%
-    write_lines(file = id_file_TGTAHMNTA2_down100)
+    write_lines(file = id_file_TGTAHMNTA2_down200)
 ```
