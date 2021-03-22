@@ -1,3 +1,0 @@
-GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
-5886	plasma membrane	"9 out of 30 genes, 30.0%"	"467 out of 6473 background genes, 7.2%"	0.00677	0.00%	ENA2:DIP5:IST2:C1_09210C_A:CNT:OPT5:C5_00570W_A:C6_03620C_A:GSL2	328:16020:5887:32541:1990531:324:70867:33101:148:16021:5886
-71944	cell periphery	"10 out of 30 genes, 33.3%"	"762 out of 6473 background genes, 11.8%"	0.06047	12.00%	ENA2:DIP5:IST2:C1_09210C_A:CNT:OPT5:DYN1:C5_00570W_A:C6_03620C_A:GSL2	328:5938:1990531:5868:324:70867:33101:5881:16021:5816:235:5886:16020:32541:5887:1411:30428:148:30286

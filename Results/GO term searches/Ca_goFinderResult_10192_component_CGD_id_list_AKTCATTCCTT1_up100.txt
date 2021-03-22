@@ -1,6 +1,0 @@
-GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
-5576	extracellular region	"3 out of 5 genes, 60.0%"	"177 out of 6473 background genes, 2.7%"	0.00135	10.00%	SAP6:SAP5:SAP4	5622:5576:62040
-31012	extracellular matrix	"2 out of 5 genes, 40.0%"	"74 out of 6473 background genes, 1.1%"	0.00882	22.00%	SAP6:SAP5	5622:5576:62040
-62039	biofilm matrix	"2 out of 5 genes, 40.0%"	"74 out of 6473 background genes, 1.1%"	0.00882	14.67%	SAP6:SAP5	5622:5576:62040
-62040	fungal biofilm matrix	"2 out of 5 genes, 40.0%"	"74 out of 6473 background genes, 1.1%"	0.00882	11.00%	SAP6:SAP5	5622:5576:62040
-30312	external encapsulating structure	"2 out of 5 genes, 40.0%"	"219 out of 6473 background genes, 3.4%"	0.07455	22.40%	SAP6:SAP5	5622:5576:62040

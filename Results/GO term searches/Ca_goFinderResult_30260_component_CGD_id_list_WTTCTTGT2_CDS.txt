@@ -1,3 +1,0 @@
-GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
-16020	membrane	"14 out of 30 genes, 46.7%"	"1316 out of 6473 background genes, 20.3%"	0.04365	10.00%	DIP5:HAK1:IST2:C1_09210C_A:CHS3:C2_02490C_A:CHK1:C2_09620W_A:MEA1:VPS13:ZRT101:C5_00570W_A:C6_03620C_A:GSL2	5737:131:5628:9986:71561:328:5789:1990531:324:70867:1990816:9365:33101:329:16021:5886:19898:16020:5634:32541:44232:30428:5935:1903561:45009:148
-1990816	vacuole-mitochondrion membrane contact site	"2 out of 30 genes, 6.7%"	"12 out of 6473 background genes, 0.2%"	0.05592	9.00%	C2_02490C_A:VPS13	5628:71561:1990816:16021:329:19898:44232
