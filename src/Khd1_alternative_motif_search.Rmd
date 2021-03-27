@@ -1,11 +1,11 @@
 ---
-title: "Scerevisiae RBP broad motif search in Calbicans"
+title: "Scerevisiae Khd1 alternative broad motif search in Calbicans"
 author: "Paddy"
 date: "24/02/2021"
 output: html_document
 ---
 ## Summary
-We are looking for occurrences....
+We are looking for occurrences of the S. cerevisiae Khd1 motif (CNN)6 from Hasegawa et al. (2008) in the CDS and UTRs of C. albicans genes to form hypotheses about homologous post-transcriptional regulation.
 
 
 ```{r setup, include=FALSE}
@@ -133,15 +133,39 @@ arrange(motif_count_down_df,desc(count_down100)) %>%
     head(n = 20) %>%
     knitr::kable()
 ```
+```{r gene_list_output_up}
+id_file_CNN1_up100 <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)1_up100.txt", sep = "/")
+motif_count_up_df %>%
+    filter(count_up100 >= 1) %>%
+    pull(id) %>%
+    write_lines(file = id_file_CNN1_up100)
+id_file_CNN2_up100 <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)2_up100.txt", sep = "/")
+motif_count_up_df %>%
+    filter(count_up100 >= 2) %>%
+    pull(id) %>%
+    write_lines(file = id_file_CNN2_up100)
+```
 ```{r gene_list_output_CDS}
-id_file_CNN1_CDS <- paste(here::here(), "results", "Motif Searches", "Ca_id_list_(CNN)1_CDS.txt", sep = "/")
+id_file_CNN1_CDS <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)1_CDS.txt", sep = "/")
 motif_count_CDS_df %>% 
   filter(count_CDS >= 1) %>% 
   pull(id) %>% 
   write_lines(file = id_file_CNN1_CDS)
-id_file_CNN2_CDS <- paste(here::here(), "results", "Motif Searches", "Ca_id_list_(CNN)1_CDS.txt", sep = "/")
+id_file_CNN2_CDS <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)1_CDS.txt", sep = "/")
 motif_count_CDS_df %>% 
   filter(count_CDS >= 2) %>% 
   pull(id) %>%
   write_lines(file = id_file_CNN2_CDS)
+```
+```{r gene_list_output_down}
+id_file_CNN1_down200 <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)1_down200.txt", sep = "/")
+motif_count_down_df %>%
+    filter(count_down200 >= 1) %>%
+    pull(id) %>%
+    write_lines(file = id_file_CNN1_down200)
+id_file_CNN2_down200 <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)2_down200.txt", sep = "/")
+motif_count_down_df %>%
+    filter(count_down200 >= 2) %>%
+    pull(id) %>%
+    write_lines(file = id_file_CNN2_down200)
 ```
