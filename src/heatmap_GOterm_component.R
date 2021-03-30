@@ -21,7 +21,7 @@ table_GOcomponent$GO_term <- factor(table_GOcomponent$GO_term, levels=unique(tab
 
 ggplot(table_GOcomponent, aes(x = RBP, y = GO_term, fill= minuslogP, las = 23)) + 
   geom_tile(color = "black") +
-  theme(axis.text.x=element_text(angle=-70,hjust=1, size = 10, face = "bold"), axis.title = element_text(size = 20, face = "bold"), axis.text.y = element_text(size=10, face = "bold"), legend.title = element_text(face = "bold"), strip.text = element_text(face = "bold", size = 12)) +
+  theme(axis.text.x=element_text(angle=-70,hjust=1, size = 10, face = "bold"), axis.title = element_text(size = 15, face = "bold"), axis.text.y = element_text(size=10, face = "bold"), legend.title = element_text(face = "bold"), strip.text = element_text(face = "bold", size = 12)) +
   labs(fill = "-log(P)", x = "RBP motif", y = "GO term") +
   scale_x_discrete(position = "top") +
   scale_y_discrete(position = "right", limits = rev(levels(table_GOcomponent$GO_term))) +
