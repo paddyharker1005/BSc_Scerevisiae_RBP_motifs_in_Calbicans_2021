@@ -4,7 +4,8 @@ library(Biostrings)
 library(readxl)
 library(dplyr)
 library(cat.extras)
-
+library(cowplot)
+theme_set(theme_cowplot(font_size = 8))
 
 here::here() 
 
@@ -58,7 +59,7 @@ tableS1$Gene_37Cserum_TE <- tableS1$Gene_Ribo_37C_serum_average_TPM / tableS1$Ge
 joined_tibble30C <- left_join (tableS1, motif_count_up_df, by = c("Gene_ID" = "id")) %>% 
   mutate(count_up100 = replace(count_up100,count_up100>=2, "2+") %>%
          factor(levels=c(0:1,"2+"))) %>%
-  filter(Gene_RNA_30C_average_TPM > quantile(Gene_RNA_30C_average_TPM, 0.5)) %>%
+  filter(Gene_RNA_30C_average_TPM > quantile(Gene_RNA_30C_average_TPM, 0.25)) %>%
   filter(count_up100 != "NA")
 
 boxplot30C <- ggplot(data=joined_tibble30C,
@@ -68,12 +69,12 @@ boxplot30C <- ggplot(data=joined_tibble30C,
   scale_y_log10nice("TE of Gene 30C",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT motif count 100up")
+  labs(x="CNYTCNYT upstream motif count")
 
 joined_tibble37Cserum <- left_join (tableS1, motif_count_up_df, by = c("Gene_ID" = "id")) %>% 
   mutate(count_up100 = replace(count_up100,count_up100>=2, "2+") %>%
            factor(levels=c(0:1,"2+"))) %>%
-  filter(Gene_RNA_37C_serum_average_TPM > quantile(Gene_RNA_37C_serum_average_TPM, 0.5)) %>%
+  filter(Gene_RNA_37C_serum_average_TPM > quantile(Gene_RNA_37C_serum_average_TPM, 0.25)) %>%
   filter(count_up100 != "NA")
 
 boxplot37Cserum <- ggplot(data=joined_tibble37Cserum,
@@ -83,4 +84,4 @@ boxplot37Cserum <- ggplot(data=joined_tibble37Cserum,
   scale_y_log10nice("TE of Gene 37C + serum",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT motif count 100up")
+  labs(x="CNYTCNYT upstream motif count")

@@ -1,19 +1,20 @@
-
 library(tidyverse)
 library(readxl)
 library(ggplot2)
 library(scales)
+library(cowplot)
+theme_set(theme_cowplot(font_size = 12))
 
 setwd("~/Documents/SENIOR HONOURS/Honours Project 20:21/Results/Motif analysis/Scerevisiae_RBP_motifs_Calbicans/Data")
 
-table_GOcomponent_Khd1 <- read_excel("GO_term_Khd1_alternative_component.xlsx")
+table_GOcomponent_Khd1 <- read_excel("GO_Khd1_all_motif_component.xlsx")
 
-ggplot(table_GOcomponent_Khd1, aes(x= reorder(GO_term, minuslogP), y= minuslogP)) +
-  geom_point(colour = 'red') +
-  geom_segment(aes(x=GO_term, xend=GO_term, y=0, yend=minuslogP), colour = 'red') +
-  scale_y_continuous(limits = c(2,16), oob = rescale_none) +
-  labs(x = "GO term", y = "-log(P)") +
+component_lollipop <- ggplot(table_GOcomponent_Khd1, aes(x= GO_term, y= minuslogP, fill = motif, colour = motif)) +
+  geom_segment(aes(x=reorder(GO_term, minuslogP), xend=GO_term, y=0, yend=minuslogP), colour = "black") +
+  geom_point(size = 2.5) +
+  scale_colour_manual(values = c("(CNN)6" = "brown2", "HWNCATTWY" = "deepskyblue", "SECReTE" = "darkorange")) +
+  scale_y_continuous(limits = c(2,35), oob = rescale_none) +
+  labs(x = "Component", y = "-log(P)", colour = "Khd1 motif", fill= "Khd1 motif") +
   coord_flip() +
-  theme_bw() +
-  theme(axis.title = element_text(size = 15, face = "bold"), axis.text = element_text(size=10, face = "bold"))
+  theme(axis.title = element_text(face = "bold"), legend.title = element_text(face = "bold"))
 

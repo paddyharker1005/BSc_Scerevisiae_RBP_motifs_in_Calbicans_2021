@@ -806,7 +806,7 @@ motif_count_CDS_df %&gt;%
   filter(count_CDS &gt;= 1) %&gt;% 
   pull(id) %&gt;% 
   write_lines(file = id_file_CNN1_CDS)
-id_file_CNN2_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Khd1 Alternative&quot;, &quot;Ca_id_list_(CNN)1_CDS.txt&quot;, sep = &quot;/&quot;)
+id_file_CNN2_CDS &lt;- paste(here::here(), &quot;results&quot;, &quot;Motif Searches&quot;, &quot;Khd1 Alternative&quot;, &quot;Ca_id_list_(CNN)2_CDS.txt&quot;, sep = &quot;/&quot;)
 motif_count_CDS_df %&gt;% 
   filter(count_CDS &gt;= 2) %&gt;% 
   pull(id) %&gt;%

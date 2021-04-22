@@ -4,7 +4,8 @@ library(Biostrings)
 library(readxl)
 library(dplyr)
 library(cat.extras)
-
+library(cowplot)
+theme_set(theme_cowplot(font_size = 8))
 
 here::here() 
 
@@ -55,12 +56,12 @@ Sc_joined_tibble <- left_join(Sc_motif_count_up_df, Sc_joined_tibble, by = c("id
   filter(count_up100 != "NA") %>%
   filter(RNA_RPKM > quantile(RNA_RPKM, 0.25))
 
-ggplot(data=Sc_joined_tibble,
+Sc_boxplot <- ggplot(data=Sc_joined_tibble,
        aes(x=count_up100,y=TE)) +
   geom_jitter(colour="grey50",size=0.7) +
   geom_boxplot(colour="blue",outlier.colour=NA,fill=NA,size=0.75) +
   scale_y_log10nice("TE of Gene",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT motif count 100up")
+  labs(x="CNYTCNYT upstream motif count")
 

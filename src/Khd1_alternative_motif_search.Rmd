@@ -151,7 +151,7 @@ motif_count_CDS_df %>%
   filter(count_CDS >= 1) %>% 
   pull(id) %>% 
   write_lines(file = id_file_CNN1_CDS)
-id_file_CNN2_CDS <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)1_CDS.txt", sep = "/")
+id_file_CNN2_CDS <- paste(here::here(), "results", "Motif Searches", "Khd1 Alternative", "Ca_id_list_(CNN)2_CDS.txt", sep = "/")
 motif_count_CDS_df %>% 
   filter(count_CDS >= 2) %>% 
   pull(id) %>%
