@@ -62,14 +62,16 @@ joined_tibble30C <- left_join (tableS1, motif_count_up_df, by = c("Gene_ID" = "i
   filter(Gene_RNA_30C_average_TPM > quantile(Gene_RNA_30C_average_TPM, 0.25)) %>%
   filter(count_up100 != "NA")
 
-boxplot30C <- ggplot(data=joined_tibble30C,
+Ssd1_boxplot30C <- ggplot(data=joined_tibble30C,
        aes(x=count_up100,y=Gene_30C_TE)) +
   geom_jitter(colour="grey50",size=0.7) +
   geom_boxplot(colour="blue",outlier.colour=NA,fill=NA,size=0.75) +
   scale_y_log10nice("TE of Gene 30C",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT upstream motif count")
+  labs(x="CNYUCNYU 5'UTR motif count") +
+  ggtitle("30C") +
+  theme(axis.text.x = element_text(size = 10), axis.text.y = element_text(size=10), axis.title = element_text(size=10), plot.title = element_text(hjust = 0.5, face = 'bold', size = 10))
 
 joined_tibble37Cserum <- left_join (tableS1, motif_count_up_df, by = c("Gene_ID" = "id")) %>% 
   mutate(count_up100 = replace(count_up100,count_up100>=2, "2+") %>%
@@ -77,11 +79,13 @@ joined_tibble37Cserum <- left_join (tableS1, motif_count_up_df, by = c("Gene_ID"
   filter(Gene_RNA_37C_serum_average_TPM > quantile(Gene_RNA_37C_serum_average_TPM, 0.25)) %>%
   filter(count_up100 != "NA")
 
-boxplot37Cserum <- ggplot(data=joined_tibble37Cserum,
+Ssd1_boxplot37Cserum <- ggplot(data=joined_tibble37Cserum,
                      aes(x=count_up100,y=Gene_37Cserum_TE)) +
   geom_jitter(colour="grey50",size=0.7) +
   geom_boxplot(colour="blue",outlier.colour=NA,fill=NA,size=0.75) +
   scale_y_log10nice("TE of Gene 37C + serum",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT upstream motif count")
+  labs(x="CNYUCNYU 5'UTR motif count") +
+  ggtitle("37C + serum") +
+  theme(axis.text.x = element_text(size = 10), axis.text.y = element_text(size=10), axis.title = element_text(size=10), plot.title = element_text(hjust = 0.5, face = 'bold', size = 10))

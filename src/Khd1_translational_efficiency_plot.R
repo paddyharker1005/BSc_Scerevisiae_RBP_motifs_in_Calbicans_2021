@@ -61,7 +61,9 @@ Khd1_boxplot30C <- ggplot(data=joined_tibble30C,
   scale_y_log10nice("TE of Gene 30C",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="(CNN)6 CDS motif count")
+  labs(x="(CNN)6 CDS motif count") +
+  ggtitle("30C") +
+  theme(axis.text.x = element_text(size = 10), axis.text.y = element_text(size=10), axis.title = element_text(size=10), plot.title = element_text(hjust = 0.5, face = 'bold', size = 10))
 
 joined_tibble37Cserum <- left_join (tableS1, motif_count_CDS_df, by = c("Gene_ID" = "id")) %>% 
   mutate(count_CDS = replace(count_CDS,count_CDS>=2, "2+") %>%
@@ -76,4 +78,6 @@ Khd1_boxplot37Cserum <- ggplot(data=joined_tibble37Cserum,
   scale_y_log10nice("TE of Gene 37C + serum",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="(CNN)6 CDS motif count")
+  labs(x="(CNN)6 CDS motif count") +
+  ggtitle("37C + serum") +
+  theme(axis.text.x = element_text(size = 10), axis.text.y = element_text(size=10), axis.title = element_text(size=10), plot.title = element_text(hjust = 0.5, face = 'bold', size = 10))

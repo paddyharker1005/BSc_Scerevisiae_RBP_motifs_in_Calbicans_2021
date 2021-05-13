@@ -63,5 +63,7 @@ Sc_boxplot <- ggplot(data=Sc_joined_tibble,
   scale_y_log10nice("TE of Gene",
                     limits=c(0.05,10),expand=c(0,0),
                     oob=scales::squish) +
-  labs(x="CNYTCNYT upstream motif count")
+  labs(x="CNYUCNYU 5'UTR motif count") + 
+  ggtitle("30C") +
+  theme(axis.text.x = element_text(size = 10), axis.text.y = element_text(size=10), axis.title = element_text(size=10), plot.title = element_text(hjust = 0.5, face = 'bold', size = 10))
 
