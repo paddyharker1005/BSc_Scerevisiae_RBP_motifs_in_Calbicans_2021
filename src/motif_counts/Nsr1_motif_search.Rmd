@@ -1,0 +1,174 @@
+---
+title: "Scerevisiae Nsr1 broad motif search in Calbicans"
+author: "Paddy"
+date: "28/02/2021"
+output: html_document
+---
+## Summary
+We are looking for occurrences of the S. cerevisiae Nsr1 motif in the CDS and UTRs of C. albicans genes to form hypotheses about homologous post-transcriptional regulation.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(tidyverse)
+library(cowplot)
+theme_set(theme_cowplot(font_size = 12))
+library(Biostrings)
+```
+
+```{r setwd_for_interactive_sessions_PHmac, include=FALSE,eval=FALSE}
+setwd("~/Documents/SENIOR HONOURS/Honours Project 20:21/Motif analysis/Scerevisiae_RBP_motifs_Calbicans/src/")
+here::here() 
+```
+## Load CDS and approximate 5' and 3' UTRs
+#### 5' UTRs
+```{r load_upstream1000}
+# define fasta filename
+Ca_up1000_file <- paste(here::here(), "Data", "Calbicans_SC5314_ATG_upstream_1000nt.fasta",
+                        sep= "/")
+# load fasta file as DNA string set
+Ca_up1000_DSS <- readDNAStringSet(Ca_up1000_file)
+# remove truncated sequences, which we don't need.
+Ca_up1000_DSS <- Ca_up1000_DSS[width(Ca_up1000_DSS) == 1000]
+# assign just the ORF id to the name, but keep all the info. 
+Ca_names_up_info <- 
+  tibble(everything = names(Ca_up1000_DSS)) %>%
+  tidyr::separate(everything,into = c("id","strain","info","seqtype","seq","length"), sep = " \\| ") %>%
+  dplyr::select(id, info,seq)
+names(Ca_up1000_DSS) <- Ca_names_up_info$id
+# print the DNA string set to check it came out ok
+Ca_up1000_DSS
+```
+#### CDS
+```{r load_CDS}
+# define fasta filename
+Ca_CDS_file <- paste(here::here(), "Data", "Calbicans_SC5314_CDS.fasta",
+                        sep= "/")
+# load fasta file as DNA string set
+Ca_CDS_DSS <- readDNAStringSet(Ca_CDS_file)
+
+Ca_names_CDS_info <- 
+  tibble(everything = names(Ca_CDS_DSS)) %>% 
+  tidyr::separate(everything,into = c("id","strain","info","seqtype","seq","length"), sep = " \\| ") %>%
+  dplyr::select(id, info,seq)
+names(Ca_CDS_DSS) <- Ca_names_CDS_info$id
+# print the DNA string set to check it came out ok
+Ca_CDS_DSS
+```
+#### 3' UTRs
+```{r load_downstream1000}
+# define fasta filename
+Ca_down1000_file <- paste(here::here(), "Data", "Calbicans_SC5314_stopcodon_downstream_1000nt.fasta",
+                        sep= "/")
+# load fasta file as DNA string set
+Ca_down1000_DSS <- readDNAStringSet(Ca_down1000_file)
+# remove truncated sequences, which we don't need.
+Ca_down1000_DSS <- Ca_down1000_DSS[width(Ca_down1000_DSS) == 1000]
+# assign just the ORF id to the name, but keep all the info. 
+Ca_names_down_info <- 
+  tibble(everything = names(Ca_down1000_DSS)) %>%
+  tidyr::separate(everything,into = c("id","strain","info","seqtype","seq","length"), sep = " \\| ") %>%
+  dplyr::select(id, info,seq)
+names(Ca_down1000_DSS) <- Ca_names_down_info$id
+# print the DNA string set to check it came out ok
+Ca_down1000_DSS
+```
+
+## Count occurences in 1000nt 5'UTRs
+```{r motif_count_up}
+motif_count_up_df <- tibble(id = Ca_names_up_info$id,
+                            info = Ca_names_up_info$info,
+                            count_up1000 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = Ca_up1000_DSS,
+                                 fixed = "subject"),
+                            count_up200 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = subseq(Ca_up1000_DSS,start = 801L, end = 1000L),
+                                 fixed = "subject"),
+                            count_up100 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = subseq(Ca_up1000_DSS,start = 901L, end = 1000L),
+                                 fixed = "subject")
+)
+summary(motif_count_up_df)
+```
+```{r high_counts_up, results="asis"}
+arrange(motif_count_up_df,desc(count_up100)) %>%
+    head(n = 20) %>%
+    knitr::kable()
+```
+
+## Count occurences in CDS
+```{r motif_count_CDS}
+motif_count_CDS_df <- tibble(id = Ca_names_CDS_info$id,
+                            info = Ca_names_CDS_info$info,
+                            count_CDS = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = Ca_CDS_DSS,
+                                 fixed = "subject"))
+summary(motif_count_CDS_df)
+```
+```{r high_counts_CDS, results="asis"}
+arrange(motif_count_CDS_df,desc(count_CDS)) %>%
+    head(n = 20) %>%
+    knitr::kable()
+```
+
+## Count occurences in 1000nt 3'UTRs
+```{r motif_count_down}
+motif_count_down_df <- tibble(id = Ca_names_down_info$id,
+                            info = Ca_names_down_info$info,
+                            count_down1000 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = Ca_down1000_DSS,
+                                 fixed = "subject"),
+                            count_down200 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = subseq(Ca_down1000_DSS,start = 1L, end = 200L),
+                                 fixed = "subject"),
+                            count_down100 = vcountPattern(pattern = DNAString("GGGWAACGGW"),
+                                 subject = subseq(Ca_down1000_DSS,start = 1L, end = 100L),
+                                 fixed = "subject")
+)
+summary(motif_count_down_df)
+```
+```{r high_counts_down, results="asis"}
+arrange(motif_count_down_df,desc(count_down100)) %>%
+    head(n = 20) %>%
+    knitr::kable()
+```
+
+## List of genes for GO search
+
+```{r gene_list_output_up}
+id_file_GGGWAACGGW1_up100 <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW1_up100.txt", sep = "/")
+motif_count_up_df %>%
+    filter(count_up100 >= 1) %>%
+    pull(id) %>%
+    write_lines(file = id_file_GGGWAACGGW1_up100)
+id_file_GGGWAACGGW2_up100 <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW2_up100.txt", sep = "/")
+motif_count_up_df %>%
+    filter(count_up100 >= 2) %>%
+    pull(id) %>%
+    write_lines(file = id_file_GGGWAACGGW2_up100)
+```
+```{r gene_list_output_CDS}
+id_file_GGGWAACGGW1_CDS <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW1_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 1) %>% 
+  pull(id) %>% 
+  write_lines(file = id_file_GGGWAACGGW1_CDS)
+id_file_GGGWAACGGW2_CDS <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW2_CDS.txt", sep = "/")
+motif_count_CDS_df %>% 
+  filter(count_CDS >= 2) %>% 
+  pull(id) %>%
+  write_lines(file = id_file_GGGWAACGGW2_CDS)
+```
+```{r gene_list_output_down}
+id_file_GGGWAACGGW1_down200 <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW1_down200.txt", sep = "/")
+motif_count_down_df %>%
+    filter(count_down200 >= 1) %>%
+    pull(id) %>%
+    write_lines(file = id_file_GGGWAACGGW1_down200)
+id_file_GGGWAACGGW2_down200 <- paste(here::here(), "results", "Motif Searches", "Nsr1", "Ca_id_list_GGGWAACGGW2_down200.txt", sep = "/")
+motif_count_down_df %>%
+    filter(count_down200 >= 2) %>%
+    pull(id) %>%
+    write_lines(file = id_file_GGGWAACGGW2_down200)
+```

@@ -1,0 +1,2 @@
+GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
+17004	cytochrome complex assembly	"7 out of 134 genes, 5.2%"	"33 out of 6473 background genes, 0.5%"	0.00245	0.00%	C1_08470W_A:PET100:COX17:CYT2:CYC3:C7_02480W_A:SCO1	16485:9060:44182:6412:43069:15893:30150:1902884:18063:45454:34551:472:15680:33617:6825:34599

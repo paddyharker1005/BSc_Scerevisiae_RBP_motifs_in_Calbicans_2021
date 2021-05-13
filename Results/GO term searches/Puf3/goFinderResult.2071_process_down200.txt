@@ -1,7 +1,0 @@
-GOID	GO_term	Cluster frequency	Background frequency	Corrected P-value	False discovery rate	Gene(s) annotated to the term	Directly Annotated GOID List
-140053	mitochondrial gene expression	"5 out of 22 genes, 22.7%"	"83 out of 6473 background genes, 1.3%"	0.00111	0.00%	MSF1:C2_01030W_A:C4_03750C_A:C4_05360C_A:C5_02590C_A	70131:6415:70126:32543:9060:463:70156:6412:90615:8033:462:372
-32543	mitochondrial translation	"4 out of 22 genes, 18.2%"	"68 out of 6473 background genes, 1.1%"	0.01158	2.00%	MSF1:C2_01030W_A:C4_03750C_A:C5_02590C_A	6415:70126:32543:9060:463:70156:6412:8033:462
-70131	positive regulation of mitochondrial translation	"2 out of 22 genes, 9.1%"	"8 out of 6473 background genes, 0.1%"	0.05001	4.00%	C3_06050C_A:C4_05360C_A	70131:7007:463:6412:90615:372:32979
-70129	regulation of mitochondrial translation	"2 out of 22 genes, 9.1%"	"9 out of 6473 background genes, 0.1%"	0.06417	4.50%	C3_06050C_A:C4_05360C_A	70131:7007:463:6412:90615:372:32979
-62125	regulation of mitochondrial gene expression	"2 out of 22 genes, 9.1%"	"10 out of 6473 background genes, 0.2%"	0.08005	4.40%	C3_06050C_A:C4_05360C_A	70131:7007:463:6412:90615:372:32979
-7006	mitochondrial membrane organization	"3 out of 22 genes, 13.6%"	"49 out of 6473 background genes, 0.8%"	0.09305	3.67%	TIM50:C3_06050C_A:C5_02740W_A	70131:7007:30150:46902:18063:6412:7006:32979
