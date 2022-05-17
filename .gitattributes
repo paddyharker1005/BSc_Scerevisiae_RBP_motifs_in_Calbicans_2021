@@ -3,3 +3,4 @@ Data/**.html linguist-detectable=false
 Results/**.html linguist-detectable=false
 src/**.html linguist-detectable=false
 Results/motif_discovery/*.html linguist-detectable=false
+src/motif_counts/*.html linguist-detectable=false
